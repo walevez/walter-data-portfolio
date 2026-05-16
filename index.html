@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EVODATA — Walter Levez · Data Science & BI</title>
+<title>EVODATA — Data Analytics Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -138,6 +138,66 @@
   .form-input:focus { border-color: var(--teal); }
   .form-textarea { resize: vertical; min-height: 110px; }
 
+  /* EDUCATION BLOCK */
+  .edu-block { display: flex; gap: 0; margin: 1.75rem 0 1.5rem; border: 0.5px solid rgba(29,201,160,0.3); background: rgba(29,201,160,0.04); position: relative; overflow: hidden; }
+  .edu-block::after { content: ''; position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(29,201,160,0.08) 0%, transparent 70%); pointer-events: none; }
+  .edu-block-accent { width: 3px; background: var(--teal); flex-shrink: 0; }
+  .edu-block-inner { padding: 1.25rem 1.35rem; flex: 1; }
+  .edu-label { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem; }
+  .edu-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; color: var(--text-primary); line-height: 1.25; margin-bottom: 0.3rem; }
+  .edu-inst { font-size: 0.82rem; color: var(--text-secondary); font-weight: 300; margin-bottom: 0.75rem; }
+  .edu-meta { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.85rem; }
+  .edu-badge { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.22rem 0.65rem; background: rgba(29,201,160,0.12); color: var(--teal); border: 0.5px solid rgba(29,201,160,0.35); }
+  .edu-year { font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-muted); letter-spacing: 0.1em; }
+  .edu-subjects { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .edu-subjects span { font-family: var(--font-mono); font-size: 0.52rem; padding: 0.15rem 0.5rem; border: 0.5px solid var(--border2); color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* EDU CARD — before certs section */
+  .edu-card { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; background: var(--surface2); border: 0.5px solid rgba(29,201,160,0.25); padding: 2rem 2.5rem; margin-bottom: 2.5rem; position: relative; overflow: hidden; }
+  .edu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--teal); }
+  .edu-card::after { content: ''; position: absolute; bottom: -60px; right: -60px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(29,201,160,0.06) 0%, transparent 70%); pointer-events: none; }
+  .edu-card-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem; }
+  .edu-card-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; line-height: 1.2; margin-bottom: 0.4rem; }
+  .edu-card-inst { font-size: 0.9rem; color: var(--text-secondary); font-weight: 300; margin-bottom: 1rem; }
+  .edu-card-tags { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+  .edu-card-tags span { font-family: var(--font-mono); font-size: 0.55rem; padding: 0.2rem 0.6rem; border: 0.5px solid var(--border2); color: var(--text-secondary); letter-spacing: 0.08em; text-transform: uppercase; }
+  .edu-card-right { text-align: right; }
+  .edu-card-year { font-family: var(--font-display); font-size: 2.5rem; color: var(--teal); opacity: 0.25; line-height: 1; }
+  .edu-card-status { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.85rem; border: 0.5px solid rgba(29,201,160,0.4); color: var(--teal); display: inline-block; margin-top: 0.5rem; }
+
+  /* CERTIFICATIONS — badge wall */
+  .cert-filter { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.35rem 0.85rem; border: 0.5px solid var(--border2); background: transparent; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+  .cert-filter.active, .cert-filter:hover { border-color: var(--teal); color: var(--teal); }
+  .badge-wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; }
+  .badge-card { position: relative; background: var(--surface2); border: 0.5px solid var(--border); padding: 1rem 1.1rem; text-decoration: none; overflow: hidden; transition: border-color 0.25s, transform 0.25s; display: flex; flex-direction: column; gap: 0.4rem; }
+  .badge-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .badge-card.featured-cert { border-color: rgba(29,201,160,0.3); }
+  .badge-card.hidden { display: none; }
+  .badge-top { display: flex; align-items: center; justify-content: space-between; }
+  .badge-pill { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.18rem 0.55rem; font-weight: 700; }
+  .badge-date { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-muted); }
+  .badge-name { font-size: 0.82rem; font-weight: 500; color: var(--text-primary); line-height: 1.35; margin-top: 0.25rem; flex-grow: 1; }
+  .badge-skills { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.35rem; }
+  .badge-skills span { font-family: var(--font-mono); font-size: 0.5rem; padding: 0.12rem 0.45rem; border: 0.5px solid var(--border2); color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; }
+  .badge-arrow { font-family: var(--font-mono); font-size: 0.6rem; color: var(--teal); margin-top: 0.6rem; opacity: 0; transform: translateX(-4px); transition: all 0.2s; }
+  .badge-card:hover .badge-arrow { opacity: 1; transform: translateX(0); }
+  .badge-glow { position: absolute; bottom: -20px; right: -20px; width: 80px; height: 80px; border-radius: 50%; opacity: 0; transition: opacity 0.35s; pointer-events: none; }
+  .badge-card:hover .badge-glow { opacity: 1; }
+  .platzi-badge { background: rgba(152,202,63,0.12); color: #98ca3f; border: 0.5px solid rgba(152,202,63,0.3); }
+  .google-badge { background: rgba(66,133,244,0.12); color: #4285f4; border: 0.5px solid rgba(66,133,244,0.3); }
+  .coderhouse-badge { background: rgba(255,90,31,0.12); color: #ff5a1f; border: 0.5px solid rgba(255,90,31,0.3); }
+  .cisco-badge { background: rgba(0,188,212,0.12); color: #00bcd4; border: 0.5px solid rgba(0,188,212,0.3); }
+  .platzi-glow { background: radial-gradient(circle, rgba(152,202,63,0.18) 0%, transparent 70%); }
+  .google-glow { background: radial-gradient(circle, rgba(66,133,244,0.18) 0%, transparent 70%); }
+  .coderhouse-glow { background: radial-gradient(circle, rgba(255,90,31,0.18) 0%, transparent 70%); }
+  .cisco-glow { background: radial-gradient(circle, rgba(0,188,212,0.18) 0%, transparent 70%); }
+  .cert-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 2.5rem; }
+  .cert-stat { background: var(--surface2); padding: 1.25rem; text-align: center; }
+  .cert-stat-num { font-family: var(--font-display); font-size: 1.6rem; color: var(--teal); line-height: 1; margin-bottom: 0.3rem; }
+  .cert-stat-label { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--text-muted); }
+  @keyframes cert-in { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  .badge-card { animation: cert-in 0.3s ease both; }
+
   /* FOOTER */
   footer { padding: 2rem 4rem; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
   .footer-logo { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.2em; color: var(--text-muted); }
@@ -158,6 +218,10 @@
     .project-card.featured { grid-column: auto; grid-template-columns: 1fr; }
     .proj-visual { display: none; }
     .hero-stats { gap: 2rem; }
+    .edu-card { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.25rem; }
+    .edu-card-right { text-align: left; }
+    .badge-wall { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+    .cert-stats { grid-template-columns: repeat(2, 1fr); }
     footer { padding: 1.5rem; flex-direction: column; text-align: center; }
   }
 </style>
@@ -169,9 +233,10 @@
   <ul class="nav-links">
     <li><a href="#sobre-mi">Sobre mí</a></li>
     <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#certificaciones">Formación</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
-  <a href="https://github.com/walevez" target="_blank" class="nav-cta">GitHub →</a>
+  <a href="https://www.linkedin.com/in/walevez/" target="_blank" class="nav-cta">LinkedIn →</a>
 </nav>
 
 <!-- HERO -->
@@ -179,12 +244,12 @@
   <div class="hero-grid"></div>
   <div class="hero-orb"></div>
   <div class="hero-content">
-    <div class="hero-tag">Data Science · Business Intelligence · Tucumán, Argentina</div>
+    <div class="hero-tag">Data Analyst · Tecnicatura en Ciencias de Datos e IA · Tucumán</div>
     <h1 class="hero-title">
       Datos que<br><em>generan</em><br>decisiones.
     </h1>
     <p class="hero-sub">
-      Transformo datasets complejos en estrategias accionables. Análisis de negocio, visualización avanzada y modelos que mueven el margen.
+      Soy Walter Emanuel Chavez. Estudio Ciencias de Datos e IA y analizo datos para convertirlos en insights claros que mejoran decisiones de negocio.
     </p>
     <div class="hero-actions">
       <a href="#proyectos" class="btn-primary">Ver proyectos →</a>
@@ -192,16 +257,16 @@
     </div>
     <div class="hero-stats">
       <div>
+        <div class="stat-num">2<span>°</span></div>
+        <div class="stat-label">Año de Tecnicatura</div>
+      </div>
+      <div>
+        <div class="stat-num">19<span>+</span></div>
+        <div class="stat-label">Certificados</div>
+      </div>
+      <div>
         <div class="stat-num">1<span>+</span></div>
         <div class="stat-label">Proyecto publicado</div>
-      </div>
-      <div>
-        <div class="stat-num">3<span>+</span></div>
-        <div class="stat-label">Tecnologías dominadas</div>
-      </div>
-      <div>
-        <div class="stat-num">100<span>%</span></div>
-        <div class="stat-label">Foco en impacto de negocio</div>
       </div>
     </div>
   </div>
@@ -219,32 +284,53 @@
       <h2 class="section-title">Analítica que <em>mueve</em> el negocio</h2>
       <div class="divider"></div>
       <p class="about-desc">
-        Soy Walter, estudiante de Tecnicatura en Ciencias de Datos e IA y fundador de EVODATA. Me especializo en transformar datos en decisiones de negocio medibles — no construyo modelos por construirlos, sino para resolver problemas reales.
+        Soy Walter Emanuel Chavez, fundador de EVODATA. Me enfoco en el análisis de datos y la visualización para ayudar a entender qué está pasando en un negocio y por qué. Cada proyecto parte de una pregunta concreta y termina con un insight accionable — no solo un gráfico.
       </p>
-      <p class="about-desc">
-        Mi enfoque combina análisis estadístico riguroso con pensamiento estratégico: cada entregable termina con una recomendación accionable, no solo con un gráfico.
-      </p>
+
+      <!-- EDUCATION BLOCK — destacado -->
+      <div class="edu-block">
+        <div class="edu-block-accent"></div>
+        <div class="edu-block-inner">
+          <div class="edu-label">// Educación formal</div>
+          <div class="edu-title">Tecnicatura en Ciencias de Datos e IA</div>
+          <div class="edu-inst">Instituto Superior Santo Domingo · Tucumán, Argentina</div>
+          <div class="edu-meta">
+            <span class="edu-badge">En curso · 2° año</span>
+            <span class="edu-year">2025 – 2027</span>
+          </div>
+          <div class="edu-subjects">
+            <span>Estadística</span>
+            <span>Machine Learning</span>
+            <span>Bases de datos</span>
+            <span>Python</span>
+            <span>IA aplicada</span>
+            <span>Visualización</span>
+          </div>
+        </div>
+      </div>
+
       <div class="skills-grid">
         <div class="skill-item"><div class="skill-dot"></div>Python & pandas</div>
-        <div class="skill-item"><div class="skill-dot"></div>SQL avanzado</div>
-        <div class="skill-item"><div class="skill-dot"></div>Power BI / Tableau</div>
-        <div class="skill-item"><div class="skill-dot"></div>Análisis exploratorio</div>
+        <div class="skill-item"><div class="skill-dot"></div>SQL</div>
+        <div class="skill-item"><div class="skill-dot"></div>Power BI</div>
+        <div class="skill-item"><div class="skill-dot"></div>Excel</div>
         <div class="skill-item"><div class="skill-dot"></div>Visualización de datos</div>
-        <div class="skill-item"><div class="skill-dot"></div>Machine Learning</div>
+        <div class="skill-item"><div class="skill-dot"></div>Análisis exploratorio (EDA)</div>
       </div>
     </div>
     <div>
       <div class="stack-panel">
         <div class="panel-label">// Stack técnico</div>
-        <div class="stack-row"><span class="stack-name">Python (pandas, matplotlib)</span><div class="stack-bar"><div class="stack-fill" style="width:90%"></div></div></div>
-        <div class="stack-row"><span class="stack-name">SQL</span><div class="stack-bar"><div class="stack-fill" style="width:85%"></div></div></div>
-        <div class="stack-row"><span class="stack-name">Power BI / DAX</span><div class="stack-bar"><div class="stack-fill" style="width:75%"></div></div></div>
-        <div class="stack-row"><span class="stack-name">Análisis de negocio</span><div class="stack-bar"><div class="stack-fill" style="width:80%"></div></div></div>
-        <div class="stack-row"><span class="stack-name">Machine Learning</span><div class="stack-bar"><div class="stack-fill" style="width:60%"></div></div></div>
+        <div class="stack-row"><span class="stack-name">Python (pandas, matplotlib)</span><div class="stack-bar"><div class="stack-fill" style="width:75%"></div></div></div>
+        <div class="stack-row"><span class="stack-name">SQL</span><div class="stack-bar"><div class="stack-fill" style="width:70%"></div></div></div>
+        <div class="stack-row"><span class="stack-name">Power BI</span><div class="stack-bar"><div class="stack-fill" style="width:65%"></div></div></div>
+        <div class="stack-row"><span class="stack-name">Excel</span><div class="stack-bar"><div class="stack-fill" style="width:80%"></div></div></div>
+        <div class="stack-row"><span class="stack-name">Análisis de negocio</span><div class="stack-bar"><div class="stack-fill" style="width:70%"></div></div></div>
       </div>
       <div class="quote-block">
         <div class="quote-mark">"</div>
         <div class="quote-text">Sin datos, eres otra persona con una opinión más.</div>
+        <div class="quote-mark">"</div>
       </div>
     </div>
   </div>
@@ -315,8 +401,8 @@
         <span class="proj-tag">Power BI</span>
         <span class="proj-tag">En desarrollo</span>
       </div>
-      <h3 class="proj-title">Dashboard Ejecutivo de Ventas</h3>
-      <p class="proj-desc">Dashboard con KPIs financieros en Power BI conectado a base SQL. Métricas de YTD, comparativa año anterior y alertas de desvío presupuestario.</p>
+      <h3 class="proj-title">Dashboard de Ventas en Power BI</h3>
+      <p class="proj-desc">Dashboard con KPIs de ventas conectado a una base de datos SQL. Seguimiento de métricas clave por período y categoría.</p>
       <div style="margin-top:auto; padding-top:1.25rem;">
         <div class="coming-soon">
           <div class="coming-dot"></div>
@@ -329,12 +415,12 @@
     <div class="project-card">
       <div class="project-bar"></div>
       <div class="proj-tags">
-        <span class="proj-tag">Machine Learning</span>
-        <span class="proj-tag">scikit-learn</span>
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">EDA</span>
         <span class="proj-tag">En desarrollo</span>
       </div>
-      <h3 class="proj-title">Modelo Predictivo — Próximo proyecto</h3>
-      <p class="proj-desc">Análisis predictivo o modelo de clasificación aplicado a un problema de negocio real. Foco en interpretabilidad y valor accionable para decisiones estratégicas.</p>
+      <h3 class="proj-title">Análisis exploratorio — Próximo proyecto</h3>
+      <p class="proj-desc">Análisis exploratorio de un dataset con contexto de negocio real. Limpieza de datos, visualizaciones e insights accionables.</p>
       <div style="margin-top:auto; padding-top:1.25rem;">
         <div class="coming-soon">
           <div class="coming-dot"></div>
@@ -344,6 +430,202 @@
     </div>
 
   </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certificaciones" style="background: var(--surface);">
+
+  <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; margin-bottom:2.5rem;">
+    <div>
+      <div class="section-tag">// Formación complementaria</div>
+      <h2 class="section-title">Certificaciones & <em>cursos</em></h2>
+    </div>
+    <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+      <button class="cert-filter active" onclick="filterCerts('all',this)">Todos · 19</button>
+      <button class="cert-filter" onclick="filterCerts('coderhouse',this)">Coderhouse · 3</button>
+      <button class="cert-filter" onclick="filterCerts('google',this)">Google · 3</button>
+      <button class="cert-filter" onclick="filterCerts('platzi',this)">Platzi · 12</button>
+      <button class="cert-filter" onclick="filterCerts('cisco',this)">Cisco · 1</button>
+    </div>
+  </div>
+
+  <div class="badge-wall" id="badge-wall">
+
+    <!-- RECIENTES PRIMERO — 2026 -->
+    <a href="https://pub.coderhouse.com/certificates/e116e5ae-d9e2-430b-94e2-eb99f40fb958?v=1" target="_blank" class="badge-card featured-cert" data-platform="coderhouse">
+      <div class="badge-top"><span class="badge-pill coderhouse-badge">Coderhouse</span><span class="badge-date">Abr. 2026</span></div>
+      <div class="badge-name">Data Analytics</div>
+      <div class="badge-skills"><span>Analytics</span><span>SQL</span><span>BI</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow coderhouse-glow"></div>
+    </a>
+
+    <a href="https://pub.coderhouse.com/certificates/7d500e84-f525-4c29-bb74-55b7e10fd1d9?v=1" target="_blank" class="badge-card featured-cert" data-platform="coderhouse">
+      <div class="badge-top"><span class="badge-pill coderhouse-badge">Coderhouse</span><span class="badge-date">Mar. 2026</span></div>
+      <div class="badge-name">Tableau</div>
+      <div class="badge-skills"><span>Tableau</span><span>Viz</span><span>Datos</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow coderhouse-glow"></div>
+    </a>
+
+    <a href="https://www.coursera.org/account/accomplishments/verify/F0PNXMBFT69G" target="_blank" class="badge-card" data-platform="google">
+      <div class="badge-top"><span class="badge-pill google-badge">Google</span><span class="badge-date">Mar. 2026</span></div>
+      <div class="badge-name">Prepare Data for Exploration</div>
+      <div class="badge-skills"><span>SQL</span><span>Datos</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow google-glow"></div>
+    </a>
+
+    <a href="https://www.coursera.org/account/accomplishments/verify/J6QL4AWAWB09" target="_blank" class="badge-card" data-platform="google">
+      <div class="badge-top"><span class="badge-pill google-badge">Google</span><span class="badge-date">Ene. 2026</span></div>
+      <div class="badge-name">Ask Questions to Make Data-Driven Decisions</div>
+      <div class="badge-skills"><span>Análisis</span><span>SQL</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow google-glow"></div>
+    </a>
+
+    <a href="https://pub.coderhouse.com/certificates/13e268f6-19f1-41c0-903d-57e91d1cf30f?v=1" target="_blank" class="badge-card" data-platform="coderhouse">
+      <div class="badge-top"><span class="badge-pill coderhouse-badge">Coderhouse</span><span class="badge-date">Ene. 2026</span></div>
+      <div class="badge-name">Excel</div>
+      <div class="badge-skills"><span>Microsoft Excel</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow coderhouse-glow"></div>
+    </a>
+
+    <!-- 2025 -->
+    <a href="https://www.coursera.org/account/accomplishments/verify/GMY4PHEMPE9X" target="_blank" class="badge-card" data-platform="google">
+      <div class="badge-top"><span class="badge-pill google-badge">Google</span><span class="badge-date">Dic. 2025</span></div>
+      <div class="badge-name">Foundations: Data, Data, Everywhere</div>
+      <div class="badge-skills"><span>Data Analytics</span><span>SQL</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow google-glow"></div>
+    </a>
+
+    <a href="https://www.credly.com/badges/1240f0e1-48d7-43ac-b7f5-a4a9701e87d2/linked_in_profile" target="_blank" class="badge-card" data-platform="cisco">
+      <div class="badge-top"><span class="badge-pill cisco-badge">Cisco</span><span class="badge-date">Nov. 2025</span></div>
+      <div class="badge-name">Introduction to Cybersecurity</div>
+      <div class="badge-skills"><span>Seguridad</span><span>Redes</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow cisco-glow"></div>
+    </a>
+
+    <!-- 2023 -->
+    <a href="https://platzi.com/p/walevez/curso/2793-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+      <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">2023</span></div>
+      <div class="badge-name">Negocios y Data Science</div>
+      <div class="badge-skills"><span>Data Science</span><span>Negocios</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow platzi-glow"></div>
+    </a>
+
+    <a href="https://platzi.com/p/walevez/curso/4036-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+      <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Feb. 2023</span></div>
+      <div class="badge-name">Curso Básico de Computadores e Informática</div>
+      <div class="badge-skills"><span>Fundamentos</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow platzi-glow"></div>
+    </a>
+
+    <a href="https://platzi.com/p/walevez/curso/3639-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+      <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Feb. 2023</span></div>
+      <div class="badge-name">Pensamiento Lógico: Manejo de Datos, Estructuras y Funciones</div>
+      <div class="badge-skills"><span>Lógica</span><span>Estructuras</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow platzi-glow"></div>
+    </a>
+
+    <a href="https://platzi.com/p/walevez/curso/2383-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+      <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Feb. 2023</span></div>
+      <div class="badge-name">Pensamiento Lógico: Lenguajes de Programación</div>
+      <div class="badge-skills"><span>Lógica</span><span>Programación</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow platzi-glow"></div>
+    </a>
+
+    <a href="https://platzi.com/p/walevez/curso/4227-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+      <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Ene. 2023</span></div>
+      <div class="badge-name">Fundamentos de Python</div>
+      <div class="badge-skills"><span>Python</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow platzi-glow"></div>
+    </a>
+
+    <a href="https://platzi.com/p/walevez/curso/3223-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+      <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Ene. 2023</span></div>
+      <div class="badge-name">Excel: Fundamentos y Formato de Hojas de Cálculo</div>
+      <div class="badge-skills"><span>Excel</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow platzi-glow"></div>
+    </a>
+
+    <a href="https://platzi.com/p/walevez/curso/3222-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+      <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Ene. 2023</span></div>
+      <div class="badge-name">Excel Básico: Tablas y Fórmulas para la Gestión de Datos</div>
+      <div class="badge-skills"><span>Excel</span><span>Datos</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow platzi-glow"></div>
+    </a>
+
+    <!-- 2022 -->
+    <a href="https://platzi.com/p/walevez/curso/3221-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+      <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Nov. 2022</span></div>
+      <div class="badge-name">Pensamiento Lógico: Algoritmos y Diagramas de Flujo</div>
+      <div class="badge-skills"><span>Lógica</span><span>Algoritmos</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow platzi-glow"></div>
+    </a>
+
+    <!-- 2021 -->
+    <a href="https://platzi.com/p/walevez/curso/1764-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+      <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Ene. 2022</span></div>
+      <div class="badge-name">Introducción al Pensamiento Computacional con Python</div>
+      <div class="badge-skills"><span>Python</span><span>Algoritmos</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow platzi-glow"></div>
+    </a>
+
+    <a href="https://platzi.com/p/walevez/curso/2292-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+      <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Dic. 2021</span></div>
+      <div class="badge-name">Introducción a la Terminal y Línea de Comandos</div>
+      <div class="badge-skills"><span>Linux</span><span>Terminal</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow platzi-glow"></div>
+    </a>
+
+    <a href="https://platzi.com/p/walevez/curso/2069-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+      <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Nov. 2021</span></div>
+      <div class="badge-name">Entorno de Trabajo para Ciencia de Datos con Jupyter y Anaconda</div>
+      <div class="badge-skills"><span>Python</span><span>Jupyter</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow platzi-glow"></div>
+    </a>
+
+    <a href="https://platzi.com/p/walevez/curso/2255-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+      <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Nov. 2021</span></div>
+      <div class="badge-name">Python Intermedio: Comprehensions, Lambdas y Manejo de Errores</div>
+      <div class="badge-skills"><span>Python</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow platzi-glow"></div>
+    </a>
+
+    <a href="https://platzi.com/p/walevez/curso/2434-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+      <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Ago. 2021</span></div>
+      <div class="badge-name">Configuración de Entorno de Desarrollo en Linux</div>
+      <div class="badge-skills"><span>Linux</span><span>DevEnv</span></div>
+      <div class="badge-arrow">→</div>
+      <div class="badge-glow platzi-glow"></div>
+    </a>
+
+  </div>
+
+  <!-- Stats -->
+  <div class="cert-stats">
+    <div class="cert-stat"><div class="cert-stat-num">19</div><div class="cert-stat-label">Certificados</div></div>
+    <div class="cert-stat"><div class="cert-stat-num">4</div><div class="cert-stat-label">Plataformas</div></div>
+    <div class="cert-stat"><div class="cert-stat-num">2021–2026</div><div class="cert-stat-label">En formación</div></div>
+    <div class="cert-stat"><div class="cert-stat-num">3</div><div class="cert-stat-label">Google Data Analytics</div></div>
+  </div>
+
 </section>
 
 <!-- CONTACT -->
@@ -359,7 +641,11 @@
       <div class="contact-info">
         <div class="contact-item">
           <div class="contact-icon">gh</div>
-          <span>github.com/walevez</span>
+          <a href="https://github.com/walevez" target="_blank" style="color:var(--text-secondary);text-decoration:none;">github.com/walevez</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">in</div>
+          <a href="https://www.linkedin.com/in/walevez/" target="_blank" style="color:var(--text-secondary);text-decoration:none;">linkedin.com/in/walevez</a>
         </div>
         <div class="contact-item">
           <div class="contact-icon">📍</div>
@@ -387,13 +673,29 @@
 
 <footer>
   <div class="footer-logo">EVO<span>DATA</span></div>
-  <span class="footer-copy">© 2026 EVODATA · Walter Chavez · Tucumán, Argentina</span>
+  <span class="footer-copy">© 2026 EVODATA · Walter Emanuel Chavez · Tucumán, Argentina</span>
   <div class="footer-links">
     <a href="https://github.com/walevez" target="_blank">GitHub</a>
-    <a href="#sobre-mi">Sobre mí</a>
+    <a href="https://www.linkedin.com/in/walevez/" target="_blank">LinkedIn</a>
     <a href="#proyectos">Proyectos</a>
   </div>
 </footer>
 
+<script>
+  function filterCerts(platform, btn) {
+    document.querySelectorAll('.cert-filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.badge-card').forEach((card, i) => {
+      const match = platform === 'all' || card.dataset.platform === platform;
+      card.classList.toggle('hidden', !match);
+      if (match) {
+        card.style.animationDelay = (i * 30) + 'ms';
+        card.style.animation = 'none';
+        void card.offsetWidth;
+        card.style.animation = '';
+      }
+    });
+  }
+</script>
 </body>
 </html>
