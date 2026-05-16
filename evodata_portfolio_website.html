@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EVODATA — Data Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #080c0e;
+    --surface: #0e1417;
+    --surface2: #141b1f;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --teal: #1dc9a0;
+    --teal-dim: rgba(29,201,160,0.12);
+    --teal-glow: rgba(29,201,160,0.25);
+    --amber: #f0a500;
+    --text-primary: #f0ede8;
+    --text-secondary: #7a8a8f;
+    --text-muted: #3d4f55;
+    --font-display: 'DM Serif Display', serif;
+    --font-mono: 'Space Mono', monospace;
+    --font-body: 'Outfit', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(8,12,14,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--teal); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  .nav-cta {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+    padding: 0.55rem 1.25rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .nav-cta:hover {
+    background: var(--teal);
+    color: var(--bg);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(29,201,160,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(29,201,160,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 70% at 60% 40%, black 30%, transparent 80%);
+  }
+
+  .hero-orb {
+    position: absolute;
+    right: 8%;
+    top: 25%;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(29,201,160,0.08) 0%, transparent 70%);
+    border: 0.5px solid rgba(29,201,160,0.15);
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  .hero-orb::before {
+    content: '';
+    position: absolute;
+    inset: 40px;
+    border-radius: 50%;
+    border: 0.5px solid rgba(29,201,160,0.1);
+  }
+
+  .hero-orb::after {
+    content: '';
+    position: absolute;
+    inset: 100px;
+    border-radius: 50%;
+    border: 0.5px solid rgba(29,201,160,0.08);
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.03); opacity: 0.8; }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 680px; }
+
+  .hero-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    max-width: 480px;
+    margin: 1.75rem 0 2.5rem;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-ghost {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--text-primary); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4.5rem;
+    padding-top: 2.5rem;
+    border-top: 0.5px solid var(--border);
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+
+  .stat-num span { color: var(--teal); }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    margin-top: 0.35rem;
+    font-weight: 300;
+  }
+
+  /* SECTION BASE */
+  section { padding: 6rem 4rem; }
+
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--teal); }
+
+  .section-desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 520px;
+    font-weight: 300;
+  }
+
+  /* SERVICES */
+  .services { background: var(--surface); }
+
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 3.5rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .service-card {
+    background: var(--surface);
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .service-card:hover { background: var(--surface2); }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--border2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: var(--teal);
+    font-size: 1.1rem;
+  }
+
+  .service-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .service-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .service-num {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+  }
+
+  /* PORTFOLIO */
+  .portfolio-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+  }
+
+  .portfolio-filter {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.45rem 1rem;
+    border: 0.5px solid var(--border2);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+    cursor: default;
+  }
+
+  .project-card:hover { border-color: var(--border2); }
+
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .project-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--teal);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover .project-bar { transform: scaleX(1); }
+
+  .project-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border: 0.5px solid var(--border2);
+    color: var(--text-secondary);
+  }
+
+  .tag.teal { border-color: rgba(29,201,160,0.4); color: var(--teal); }
+
+  .project-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-metrics {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .metric-val {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--teal);
+  }
+
+  .metric-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+  }
+
+  .project-visual {
+    background: var(--surface2);
+    border: 0.5px solid var(--border);
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Fake chart visual */
+  .chart-bars {
+    display: flex;
+    gap: 6px;
+    align-items: flex-end;
+    height: 140px;
+    padding: 0 1rem;
+  }
+
+  .bar {
+    width: 18px;
+    background: var(--teal-dim);
+    border: 0.5px solid rgba(29,201,160,0.3);
+    border-bottom: none;
+    transition: background 0.3s;
+  }
+
+  .bar.active { background: rgba(29,201,160,0.35); }
+
+  .chart-line {
+    position: absolute;
+    inset: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ABOUT */
+  .about { background: var(--surface); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-skills {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .skill-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .skill-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--teal);
+    flex-shrink: 0;
+  }
+
+  .about-panel {
+    background: var(--surface2);
+    border: 0.5px solid var(--border);
+    padding: 2rem;
+  }
+
+  .panel-title {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1.25rem;
+  }
+
+  .stack-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 0;
+    border-bottom: 0.5px solid var(--border);
+    font-size: 0.85rem;
+  }
+
+  .stack-item:last-child { border-bottom: none; }
+
+  .stack-name { color: var(--text-secondary); }
+
+  .stack-bar-wrap {
+    width: 100px;
+    height: 3px;
+    background: var(--border2);
+    position: relative;
+  }
+
+  .stack-bar-fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: var(--teal);
+  }
+
+  /* CONTACT */
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .form-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .form-input {
+    background: var(--surface);
+    border: 0.5px solid var(--border2);
+    color: var(--text-primary);
+    padding: 0.85rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .form-input:focus { border-color: var(--teal); }
+
+  .form-textarea { resize: vertical; min-height: 120px; }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 4rem;
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+  }
+
+  .footer-logo span { color: var(--teal); }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-links a {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--teal); }
+
+  /* Divider line */
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--teal);
+    margin: 2rem 0;
+  }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: fadeUpDown 2.5s ease-in-out infinite;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--teal), transparent);
+  }
+
+  @keyframes fadeUpDown {
+    0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+    50% { opacity: 1; transform: translateX(-50%) translateY(-6px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">EVO<span>DATA</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Iniciar Proyecto</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Data Science & Business Intelligence</div>
+
+    <h1 class="hero-title">
+      Decisiones que<br><em>evolucionan</em><br>con los datos.
+    </h1>
+
+    <p class="hero-sub">
+      Transformamos datos complejos en estrategias de negocio accionables. 
+      Consultoría avanzada en analítica, machine learning y optimización de procesos.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#portfolio" class="btn-primary">Ver Portfolio →</a>
+      <a href="#servicios" class="btn-ghost">Explorar servicios ↓</a>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">12<span>+</span></div>
+        <div class="stat-label">Proyectos entregados</div>
+      </div>
+      <div>
+        <div class="stat-num">8<span>+</span></div>
+        <div class="stat-label">Industrias cubiertas</div>
+      </div>
+      <div>
+        <div class="stat-num">97<span>%</span></div>
+        <div class="stat-label">Precisión promedio de modelos</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicios">
+  <div class="services-header">
+    <div>
+      <div class="section-tag">// Servicios</div>
+      <h2 class="section-title">Analítica que <em>mueve</em> el negocio</h2>
+    </div>
+    <p class="section-desc">
+      No construimos modelos por construirlos. Cada proyecto parte de un problema de negocio real y termina con una recomendación accionable.
+    </p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+      </div>
+      <div class="service-title">Machine Learning & Modelado Predictivo</div>
+      <p class="service-desc">Modelos de clasificación, regresión y forecasting adaptados a tus KPIs. Foco en interpretabilidad y valor de negocio.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </div>
+      <div class="service-title">Data Strategy & Architecture</div>
+      <p class="service-desc">Diseño de pipelines, data lakes y estrategias de gobernanza que escalan con el negocio. CRISP-DM como framework base.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      </div>
+      <div class="service-title">BI & Dashboards Ejecutivos</div>
+      <p class="service-desc">Visualizaciones en Power BI, Tableau y Python. Dashboards que permiten decisiones en tiempo real, no en retrospectiva.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="service-title">Optimización de Procesos</div>
+      <p class="service-desc">Metodologías Lean & Six Sigma potenciadas con analítica. Reducción de costos operativos con evidencia cuantificable.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="service-title">Mentoría & Training</div>
+      <p class="service-desc">Capacitación en Python, SQL y pensamiento analítico para equipos. Del dato al modelo, del modelo a la decisión.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="service-title">NLP & IA Generativa Aplicada</div>
+      <p class="service-desc">Soluciones con LLMs para análisis de texto, automatización de reportes y asistentes internos de negocio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-header">
+    <div>
+      <div class="section-tag">// Portfolio</div>
+      <h2 class="section-title">Casos de <em>alto impacto</em></h2>
+    </div>
+    <div class="portfolio-filter">
+      <button class="filter-btn active">Todos</button>
+      <button class="filter-btn">ML</button>
+      <button class="filter-btn">BI</button>
+      <button class="filter-btn">Estrategia</button>
+    </div>
+  </div>
+
+  <div class="portfolio-grid">
+
+    <!-- Featured project -->
+    <div class="project-card featured">
+      <div class="project-bar"></div>
+      <div>
+        <div class="project-tags">
+          <span class="tag teal">Destacado</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Retail</span>
+        </div>
+        <h3 class="project-title">Modelo de Predicción de Churn para Retail Masivo</h3>
+        <p class="project-desc">
+          Desarrollo de modelo de clasificación para identificar clientes en riesgo de abandono 45 días antes del evento. Implementado sobre +2M de registros transaccionales con feature engineering basado en RFM.
+        </p>
+        <div class="project-metrics">
+          <div>
+            <div class="metric-val">94%</div>
+            <div class="metric-label">AUC-ROC</div>
+          </div>
+          <div>
+            <div class="metric-val">-32%</div>
+            <div class="metric-label">Tasa de churn</div>
+          </div>
+          <div>
+            <div class="metric-val">$180K</div>
+            <div class="metric-label">Ahorro anual estimado</div>
+          </div>
+        </div>
+      </div>
+      <div class="project-visual">
+        <div class="chart-bars">
+          <div class="bar" style="height:40%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar" style="height:35%"></div>
+          <div class="bar" style="height:70%"></div>
+          <div class="bar active" style="height:90%"></div>
+          <div class="bar" style="height:65%"></div>
+          <div class="bar" style="height:80%"></div>
+          <div class="bar active" style="height:95%"></div>
+          <div class="bar" style="height:72%"></div>
+          <div class="bar" style="height:85%"></div>
+          <div class="bar" style="height:60%"></div>
+          <div class="bar active" style="height:78%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <div class="project-bar"></div>
+      <div class="project-tags">
+        <span class="tag">Dashboard</span>
+        <span class="tag">Finanzas</span>
+      </div>
+      <h3 class="project-title">Dashboard CFO — KPIs Financieros en Tiempo Real</h3>
+      <p class="project-desc">
+        Panel ejecutivo en Power BI integrado con ERP para monitoreo de márgenes, flujo de caja y alertas automáticas sobre desviaciones presupuestarias.
+      </p>
+      <div style="margin-top: auto; padding-top: 1.5rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <span class="tag">Power BI</span>
+        <span class="tag">SQL Server</span>
+        <span class="tag">DAX</span>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+      <div class="project-bar"></div>
+      <div class="project-tags">
+        <span class="tag">Optimización</span>
+        <span class="tag">Supply Chain</span>
+      </div>
+      <h3 class="project-title">Optimización de Inventario con Forecasting SARIMA</h3>
+      <p class="project-desc">
+        Modelo de series temporales para cadena de distribución farmacéutica. Reducción de roturas de stock en un 41% y de exceso de inventario en 28%.
+      </p>
+      <div style="margin-top: auto; padding-top: 1.5rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <span class="tag">Python</span>
+        <span class="tag">SARIMA</span>
+        <span class="tag">Prophet</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre-mi">
+  <div class="about-grid">
+    <div>
+      <div class="section-tag">// Sobre EVODATA</div>
+      <h2 class="section-title">Donde la ciencia de datos <em>encuentra</em> el negocio</h2>
+      <div class="divider"></div>
+      <p style="color: var(--text-secondary); font-weight: 300; line-height: 1.75;">
+        EVODATA nace de la convicción de que los datos solo tienen valor cuando generan decisiones. No somos un equipo de investigación: somos consultores que usan la analítica avanzada como palanca estratégica.
+      </p>
+      <p style="color: var(--text-secondary); font-weight: 300; line-height: 1.75; margin-top: 1rem;">
+        Cada proyecto comienza con una pregunta de negocio, no con un modelo. Cada entregable termina con una recomendación cuantificable.
+      </p>
+
+      <div class="about-skills">
+        <div class="skill-item"><div class="skill-dot"></div> Python & SQL avanzado</div>
+        <div class="skill-item"><div class="skill-dot"></div> Machine Learning</div>
+        <div class="skill-item"><div class="skill-dot"></div> Estadística aplicada</div>
+        <div class="skill-item"><div class="skill-dot"></div> Power BI / Tableau</div>
+        <div class="skill-item"><div class="skill-dot"></div> CRISP-DM / Lean</div>
+        <div class="skill-item"><div class="skill-dot"></div> NLP & LLMs</div>
+        <div class="skill-item"><div class="skill-dot"></div> Cloud (AWS/GCP)</div>
+        <div class="skill-item"><div class="skill-dot"></div> Deep Learning</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="about-panel">
+        <div class="panel-title">// Stack técnico</div>
+
+        <div class="stack-item">
+          <span class="stack-name">Python (pandas, sklearn, torch)</span>
+          <div class="stack-bar-wrap"><div class="stack-bar-fill" style="width:95%"></div></div>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">SQL & bases de datos</span>
+          <div class="stack-bar-wrap"><div class="stack-bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">Power BI / Tableau</span>
+          <div class="stack-bar-wrap"><div class="stack-bar-fill" style="width:85%"></div></div>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">Machine Learning</span>
+          <div class="stack-bar-wrap"><div class="stack-bar-fill" style="width:92%"></div></div>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">NLP & LLMs</span>
+          <div class="stack-bar-wrap"><div class="stack-bar-fill" style="width:75%"></div></div>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">Cloud (AWS / GCP)</span>
+          <div class="stack-bar-wrap"><div class="stack-bar-fill" style="width:70%"></div></div>
+        </div>
+      </div>
+
+      <div style="margin-top: 1rem; padding: 1.5rem; border: 0.5px solid var(--border); display: flex; gap: 1rem; align-items: flex-start;">
+        <div style="color: var(--teal); font-size: 1.5rem; line-height: 1;">"</div>
+        <p style="font-family: var(--font-display); font-size: 1.05rem; font-style: italic; color: var(--text-secondary); line-height: 1.5;">
+          Sin datos, eres otra persona con una opinión más.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto">
+  <div class="contact-inner">
+    <div>
+      <div class="section-tag">// Contacto</div>
+      <h2 class="section-title">¿Tienes un problema de datos que <em>resolver</em>?</h2>
+      <div class="divider"></div>
+      <p style="color: var(--text-secondary); font-weight: 300; margin-bottom: 2rem;">
+        Cuéntame el desafío. Evaluamos juntos si los datos disponibles permiten abordarlo y cuál sería el camino de mayor impacto.
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+          <div style="width: 36px; height: 36px; border: 0.5px solid var(--border2); display:flex; align-items:center; justify-content:center; color: var(--teal); font-size: 0.9rem;">@</div>
+          hola@evodata.com
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+          <div style="width: 36px; height: 36px; border: 0.5px solid var(--border2); display:flex; align-items:center; justify-content:center; color: var(--teal); font-size: 0.9rem;">in</div>
+          linkedin.com/in/evodata
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-group">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-input" placeholder="Tu nombre">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Empresa</label>
+        <input type="text" class="form-input" placeholder="Empresa u organización">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="tu@empresa.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Descripción del proyecto</label>
+        <textarea class="form-input form-textarea" placeholder="¿Qué problema de negocio quieres resolver?"></textarea>
+      </div>
+      <button class="btn-primary" style="width: 100%; text-align: center; cursor: pointer; border: none;">Enviar mensaje →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">EVO<span>DATA</span></div>
+  <span class="footer-copy">© 2025 EVODATA — Data Intelligence Consulting</span>
+  <div class="footer-links">
+    <a href="#">LinkedIn</a>
+    <a href="#">GitHub</a>
+    <a href="#">Política de privacidad</a>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
