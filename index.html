@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EVODATA — Data Analytics Portfolio</title>
+<title>Walter Chavez — Portfolio de Data Analytics</title>
+<meta name="description" content="Portfolio personal de Walter Emanuel Chavez — analista de datos, estudiante de Ciencias de Datos e IA en Tucumán, Argentina.">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -121,6 +122,11 @@
   .proj-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); text-decoration: none; border: 0.5px solid rgba(29,201,160,0.35); padding: 0.55rem 1rem; transition: all 0.2s; margin-top: auto; align-self: flex-start; }
   .proj-link:hover { background: var(--teal-dim); }
   .proj-visual { background: var(--surface2); border: 0.5px solid var(--border); height: 200px; display: flex; align-items: flex-end; padding: 1.25rem; gap: 5px; overflow: hidden; }
+  .proj-visual.screenshot { align-items: stretch; padding: 0; position: relative; }
+  .proj-visual.screenshot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: 0.92; transition: opacity 0.3s, transform 0.4s; }
+  .project-card:hover .proj-visual.screenshot img { opacity: 1; transform: scale(1.02); }
+  .proj-visual.screenshot::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--surface) 0%, transparent 40%); pointer-events: none; }
+  .project-card.featured .proj-visual { height: 260px; }
   .bar-chart-bar { background: var(--teal-dim); border: 0.5px solid rgba(29,201,160,0.25); border-bottom: none; width: 16px; transition: background 0.3s; flex-shrink: 0; }
   .bar-chart-bar.hi { background: rgba(29,201,160,0.3); }
   .coming-soon { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; gap: 0.75rem; }
@@ -229,7 +235,7 @@
 <body>
 
 <nav>
-  <a href="#inicio" class="nav-logo">EVO<span>DATA</span></a>
+  <a href="#inicio" class="nav-logo">WALTER<span>CHAVEZ</span></a>
   <ul class="nav-links">
     <li><a href="#sobre-mi">Sobre mí</a></li>
     <li><a href="#proyectos">Proyectos</a></li>
@@ -244,16 +250,16 @@
   <div class="hero-grid"></div>
   <div class="hero-orb"></div>
   <div class="hero-content">
-    <div class="hero-tag">Data Analyst · Tecnicatura en Ciencias de Datos e IA · Tucumán</div>
+    <div class="hero-tag">Hola, soy Walter · Data Analyst · Tucumán, Argentina</div>
     <h1 class="hero-title">
-      Datos que<br><em>generan</em><br>decisiones.
+      Convierto datos<br>en <em>decisiones</em><br>claras.
     </h1>
     <p class="hero-sub">
-      Soy Walter Emanuel Chavez. Estudio Ciencias de Datos e IA y analizo datos para convertirlos en insights claros que mejoran decisiones de negocio.
+      Soy Walter Emanuel Chavez, estudiante de Ciencias de Datos e IA. Me apasiona explorar datos, encontrar patrones y comunicar lo que encuentro de forma simple y accionable.
     </p>
     <div class="hero-actions">
       <a href="#proyectos" class="btn-primary">Ver proyectos →</a>
-      <a href="#contacto" class="btn-outline">Trabajar juntos</a>
+      <a href="#contacto" class="btn-outline">Contactame</a>
     </div>
     <div class="hero-stats">
       <div>
@@ -265,8 +271,8 @@
         <div class="stat-label">Certificados</div>
       </div>
       <div>
-        <div class="stat-num">1<span>+</span></div>
-        <div class="stat-label">Proyecto publicado</div>
+        <div class="stat-num">2<span>+</span></div>
+        <div class="stat-label">Proyectos publicados</div>
       </div>
     </div>
   </div>
@@ -281,10 +287,10 @@
   <div class="about-grid">
     <div>
       <div class="section-tag">// Sobre mí</div>
-      <h2 class="section-title">Analítica que <em>mueve</em> el negocio</h2>
+      <h2 class="section-title">Quién soy y qué <em>hago</em></h2>
       <div class="divider"></div>
       <p class="about-desc">
-        Soy Walter Emanuel Chavez, fundador de EVODATA. Me enfoco en el análisis de datos y la visualización para ayudar a entender qué está pasando en un negocio y por qué. Cada proyecto parte de una pregunta concreta y termina con un insight accionable — no solo un gráfico.
+        Soy Walter Emanuel Chavez, de Tucumán. Estudio la Tecnicatura en Ciencias de Datos e IA y complemento mi formación con cursos y proyectos propios. Me interesa el análisis de datos, la visualización y entender el porqué detrás de los números — cada proyecto parte de una pregunta concreta y termina con un insight accionable, no solo un gráfico.
       </p>
 
       <!-- EDUCATION BLOCK — destacado -->
@@ -341,18 +347,53 @@
   <div class="projects-header">
     <div>
       <div class="section-tag">// Proyectos</div>
-      <h2 class="section-title">Casos de <em>alto impacto</em></h2>
+      <h2 class="section-title">Mi trabajo en <em>datos</em></h2>
     </div>
   </div>
 
   <div class="projects-grid">
 
-    <!-- FEATURED -->
+    <!-- FEATURED — CEMT -->
     <div class="project-card featured">
       <div class="project-bar"></div>
       <div style="display:flex;flex-direction:column;">
         <div class="proj-tags">
           <span class="proj-tag accent">Destacado</span>
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">SQLite</span>
+          <span class="proj-tag">Streamlit</span>
+          <span class="proj-tag">SQL</span>
+        </div>
+        <h3 class="proj-title">Auditoría y Conciliación de Datos CEMT</h3>
+        <p class="proj-desc">
+          Pipeline de datos end-to-end para detectar discrepancias entre los registros informados al Ministerio y los datos reales de producción de molienda. Extracción paginada, almacenamiento incremental en SQLite, validación con SQL y dashboard en Streamlit para gerencia.
+        </p>
+        <div class="proj-metrics">
+          <div>
+            <div class="metric-val">100%</div>
+            <div class="metric-label">Bachadas auditadas</div>
+          </div>
+          <div>
+            <div class="metric-val">E2E</div>
+            <div class="metric-label">Pipeline completo</div>
+          </div>
+          <div>
+            <div class="metric-val">min</div>
+            <div class="metric-label">Conciliación diaria</div>
+          </div>
+        </div>
+        <a href="https://github.com/walevez/control_cemt" target="_blank" class="proj-link">Ver en GitHub →</a>
+      </div>
+      <div class="proj-visual screenshot">
+        <img src="https://raw.githubusercontent.com/walevez/control_cemt/main/capturas/screenshot02.jpeg" alt="Dashboard Streamlit — Control CEMT" loading="lazy">
+      </div>
+    </div>
+
+    <!-- FEATURED — Superstore -->
+    <div class="project-card featured">
+      <div class="project-bar"></div>
+      <div style="display:flex;flex-direction:column;">
+        <div class="proj-tags">
           <span class="proj-tag">Python</span>
           <span class="proj-tag">Pandas</span>
           <span class="proj-tag">Análisis de Negocio</span>
@@ -633,10 +674,10 @@
   <div class="contact-grid">
     <div>
       <div class="section-tag">// Contacto</div>
-      <h2 class="section-title">¿Tenés un problema de datos que <em>resolver</em>?</h2>
+      <h2 class="section-title">¿Hablamos de <em>datos</em>?</h2>
       <div class="divider"></div>
       <p style="color:var(--text-secondary);font-weight:300;line-height:1.75;margin-bottom:0.5rem;">
-        Contame el desafío. Evaluamos si los datos disponibles permiten abordarlo y cuál es el camino de mayor impacto para el negocio.
+        Estoy abierto a colaboraciones, proyectos freelance o simplemente charlar sobre analítica. Escribime y vemos cómo podemos trabajar juntos.
       </p>
       <div class="contact-info">
         <div class="contact-item">
@@ -664,7 +705,7 @@
       </div>
       <div>
         <label class="form-label">Mensaje</label>
-        <textarea class="form-input form-textarea" placeholder="¿Qué problema de negocio querés resolver?"></textarea>
+        <textarea class="form-input form-textarea" placeholder="Contame en qué estás trabajando o qué te gustaría explorar..."></textarea>
       </div>
       <button class="btn-primary" style="border:none;cursor:pointer;width:100%;text-align:center;">Enviar mensaje →</button>
     </div>
@@ -672,8 +713,8 @@
 </section>
 
 <footer>
-  <div class="footer-logo">EVO<span>DATA</span></div>
-  <span class="footer-copy">© 2026 EVODATA · Walter Emanuel Chavez · Tucumán, Argentina</span>
+  <div class="footer-logo">WALTER<span>CHAVEZ</span></div>
+  <span class="footer-copy">© 2026 Walter Emanuel Chavez · Tucumán, Argentina</span>
   <div class="footer-links">
     <a href="https://github.com/walevez" target="_blank">GitHub</a>
     <a href="https://www.linkedin.com/in/walevez/" target="_blank">LinkedIn</a>
