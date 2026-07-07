@@ -134,15 +134,10 @@
   @keyframes blink { 0%,100%{opacity:0.3} 50%{opacity:1} }
 
   /* CONTACT */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .contact-content { max-width: 560px; }
   .contact-info { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.75rem; }
   .contact-item { display: flex; align-items: center; gap: 1rem; font-size: 0.9rem; color: var(--text-secondary); }
   .contact-icon { width: 34px; height: 34px; border: 0.5px solid var(--border2); display: flex; align-items: center; justify-content: center; color: var(--teal); font-size: 0.85rem; flex-shrink: 0; font-family: var(--font-mono); }
-  .contact-form { display: flex; flex-direction: column; gap: 0.9rem; }
-  .form-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.35rem; display: block; }
-  .form-input { background: var(--surface); border: 0.5px solid var(--border2); color: var(--text-primary); padding: 0.8rem 1rem; font-family: var(--font-body); font-size: 0.9rem; outline: none; transition: border-color 0.2s; width: 100%; }
-  .form-input:focus { border-color: var(--teal); }
-  .form-textarea { resize: vertical; min-height: 110px; }
 
   /* EDUCATION BLOCK */
   .edu-block { display: flex; gap: 0; margin: 1.75rem 0 1.5rem; border: 0.5px solid rgba(29,201,160,0.3); background: rgba(29,201,160,0.04); position: relative; overflow: hidden; }
@@ -219,7 +214,7 @@
     .hero { padding: 7rem 1.5rem 3rem; }
     .hero-orb { display: none; }
     section { padding: 4rem 1.5rem; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .projects-grid { grid-template-columns: 1fr; }
     .project-card.featured { grid-column: auto; grid-template-columns: 1fr; }
     .proj-visual { display: none; }
@@ -671,43 +666,26 @@
 
 <!-- CONTACT -->
 <section id="contacto" style="background: var(--surface);">
-  <div class="contact-grid">
-    <div>
-      <div class="section-tag">// Contacto</div>
-      <h2 class="section-title">¿Hablamos de <em>datos</em>?</h2>
-      <div class="divider"></div>
-      <p style="color:var(--text-secondary);font-weight:300;line-height:1.75;margin-bottom:0.5rem;">
-        Estoy abierto a colaboraciones, proyectos freelance o simplemente charlar sobre analítica. Escribime y vemos cómo podemos trabajar juntos.
-      </p>
-      <div class="contact-info">
-        <div class="contact-item">
-          <div class="contact-icon">gh</div>
-          <a href="https://github.com/walevez" target="_blank" style="color:var(--text-secondary);text-decoration:none;">github.com/walevez</a>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">in</div>
-          <a href="https://www.linkedin.com/in/walevez/" target="_blank" style="color:var(--text-secondary);text-decoration:none;">linkedin.com/in/walevez</a>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">📍</div>
-          <span>Tucumán, Argentina</span>
-        </div>
+  <div class="contact-content">
+    <div class="section-tag">// Contacto</div>
+    <h2 class="section-title">¿Hablamos de <em>datos</em>?</h2>
+    <div class="divider"></div>
+    <p style="color:var(--text-secondary);font-weight:300;line-height:1.75;margin-bottom:0.5rem;">
+      Estoy abierto a colaboraciones, proyectos freelance o simplemente charlar sobre analítica. Escribime por LinkedIn o GitHub.
+    </p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">gh</div>
+        <a href="https://github.com/walevez" target="_blank" style="color:var(--text-secondary);text-decoration:none;">github.com/walevez</a>
       </div>
-    </div>
-    <div class="contact-form">
-      <div>
-        <label class="form-label">Nombre</label>
-        <input type="text" class="form-input" placeholder="Tu nombre">
+      <div class="contact-item">
+        <div class="contact-icon">in</div>
+        <a href="https://www.linkedin.com/in/walevez/" target="_blank" style="color:var(--text-secondary);text-decoration:none;">linkedin.com/in/walevez</a>
       </div>
-      <div>
-        <label class="form-label">Email</label>
-        <input type="email" class="form-input" placeholder="tu@email.com">
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <span>Tucumán, Argentina</span>
       </div>
-      <div>
-        <label class="form-label">Mensaje</label>
-        <textarea class="form-input form-textarea" placeholder="Contame en qué estás trabajando o qué te gustaría explorar..."></textarea>
-      </div>
-      <button class="btn-primary" style="border:none;cursor:pointer;width:100%;text-align:center;">Enviar mensaje →</button>
     </div>
   </div>
 </section>
