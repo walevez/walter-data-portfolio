@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Walter Chavez — Portfolio de Data Analytics</title>
-<meta name="description" content="Portfolio personal de Walter Emanuel Chavez — analista de datos, estudiante de Ciencias de Datos e IA en Tucumán, Argentina.">
+<title>Walter Chavez — Operaciones Industriales & Data Analytics</title>
+<meta name="description" content="Portfolio de Walter Emanuel Chavez — supervisor de operaciones con más de 10 años de experiencia, orientado a Data Analytics, automatización y mejora de procesos industriales.">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -94,11 +94,6 @@
   .skill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
   .stack-panel { background: var(--surface2); border: 0.5px solid var(--border); padding: 1.75rem; }
   .panel-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.25rem; }
-  .stack-row { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0; border-bottom: 0.5px solid var(--border); font-size: 0.84rem; }
-  .stack-row:last-child { border-bottom: none; }
-  .stack-name { color: var(--text-secondary); }
-  .stack-bar { width: 90px; height: 2px; background: var(--border2); position: relative; }
-  .stack-fill { position: absolute; top: 0; left: 0; bottom: 0; background: var(--teal); }
   .quote-block { margin-top: 1rem; padding: 1.25rem 1.5rem; border: 0.5px solid var(--border); display: flex; gap: 0.75rem; align-items: flex-start; }
   .quote-mark { color: var(--teal); font-family: var(--font-display); font-size: 1.75rem; line-height: 1; }
   .quote-text { font-family: var(--font-display); font-style: italic; color: var(--text-secondary); font-size: 1rem; line-height: 1.55; }
@@ -225,6 +220,71 @@
     .cert-stats { grid-template-columns: repeat(2, 1fr); }
     footer { padding: 1.5rem; flex-direction: column; text-align: center; }
   }
+
+  /* STACK GROUPS */
+  .stack-group { padding: 0.95rem 0; border-bottom: 0.5px solid var(--border); }
+  .stack-group:last-child { border-bottom: none; padding-bottom: 0; }
+  .stack-group-title { display: block; font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.6rem; }
+  .stack-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .stack-tags span {
+    font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 0.22rem 0.62rem;
+    border: 0.5px solid var(--border2); color: var(--text-muted);
+  }
+
+  /* EXPERIENCE */
+  .experience-card {
+    background: var(--surface); border: 0.5px solid var(--border);
+    padding: 2rem; margin-top: 2rem; position: relative; overflow: hidden;
+  }
+  .experience-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--teal);
+  }
+  .experience-head {
+    display: flex; justify-content: space-between; gap: 2rem;
+    align-items: flex-start; margin-bottom: 1.25rem;
+  }
+  .experience-role {
+    font-family: var(--font-display); font-size: 1.6rem; line-height: 1.2;
+  }
+  .experience-company { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.25rem; }
+  .experience-period {
+    font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--teal); border: 0.5px solid rgba(29,201,160,0.35);
+    padding: 0.4rem 0.8rem; white-space: nowrap;
+  }
+  .experience-summary {
+    max-width: 780px; color: var(--text-secondary); font-weight: 300;
+    line-height: 1.8; margin-bottom: 1.8rem;
+  }
+  .experience-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+    background: var(--border);
+  }
+  .experience-item {
+    background: var(--surface2); padding: 1.4rem; display: flex; gap: 1rem;
+  }
+  .experience-index {
+    font-family: var(--font-mono); font-size: 0.6rem; color: var(--teal); margin-top: 0.25rem;
+  }
+  .experience-item h3 {
+    font-size: 0.95rem; font-weight: 500; margin-bottom: 0.35rem;
+  }
+  .experience-item p {
+    color: var(--text-secondary); font-size: 0.82rem; font-weight: 300; line-height: 1.65;
+  }
+
+  .cert-intro {
+    color: var(--text-secondary); font-size: 0.9rem; font-weight: 300;
+    max-width: 650px; margin-top: 0.6rem;
+  }
+
+  @media (max-width: 768px) {
+    .experience-head { flex-direction: column; gap: 1rem; }
+    .experience-grid { grid-template-columns: 1fr; }
+  }
+
 </style>
 </head>
 <body>
@@ -233,11 +293,12 @@
   <a href="#inicio" class="nav-logo">WALTER<span>CHAVEZ</span></a>
   <ul class="nav-links">
     <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#experiencia">Experiencia</a></li>
     <li><a href="#proyectos">Proyectos</a></li>
     <li><a href="#certificaciones">Formación</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
-  <a href="https://www.linkedin.com/in/walevez/" target="_blank" class="nav-cta">LinkedIn →</a>
+  <a href="https://www.linkedin.com/in/walevez/" target="_blank" rel="noopener noreferrer" class="nav-cta">LinkedIn →</a>
 </nav>
 
 <!-- HERO -->
@@ -245,12 +306,12 @@
   <div class="hero-grid"></div>
   <div class="hero-orb"></div>
   <div class="hero-content">
-    <div class="hero-tag">Hola, soy Walter · Data Analyst · Tucumán, Argentina</div>
+    <div class="hero-tag">Supervisor de Operaciones · Data Analytics · Tucumán, Argentina</div>
     <h1 class="hero-title">
-      Convierto datos<br>en <em>decisiones</em><br>claras.
+      Transformo procesos<br>industriales en<br><em>decisiones basadas<br>en datos.</em>
     </h1>
     <p class="hero-sub">
-      Soy Walter Emanuel Chavez, estudiante de Ciencias de Datos e IA. Me apasiona explorar datos, encontrar patrones y comunicar lo que encuentro de forma simple y accionable.
+      Más de 10 años de experiencia en operaciones industriales, coordinación de equipos y mejora de procesos. Actualmente curso la Tecnicatura en Ciencias de Datos e IA y desarrollo soluciones con Python, SQL, Excel y herramientas de visualización.
     </p>
     <div class="hero-actions">
       <a href="#proyectos" class="btn-primary">Ver proyectos →</a>
@@ -258,12 +319,12 @@
     </div>
     <div class="hero-stats">
       <div>
-        <div class="stat-num">2<span>°</span></div>
-        <div class="stat-label">Año de Tecnicatura</div>
+        <div class="stat-num">10<span>+</span></div>
+        <div class="stat-label">Años de experiencia</div>
       </div>
       <div>
-        <div class="stat-num">19<span>+</span></div>
-        <div class="stat-label">Certificados</div>
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-label">Bachadas auditadas</div>
       </div>
       <div>
         <div class="stat-num">2<span>+</span></div>
@@ -282,13 +343,15 @@
   <div class="about-grid">
     <div>
       <div class="section-tag">// Sobre mí</div>
-      <h2 class="section-title">Quién soy y qué <em>hago</em></h2>
+      <h2 class="section-title">Experiencia operativa con enfoque en <em>datos</em></h2>
       <div class="divider"></div>
       <p class="about-desc">
-        Soy Walter Emanuel Chavez, de Tucumán. Estudio la Tecnicatura en Ciencias de Datos e IA y complemento mi formación con cursos y proyectos propios. Me interesa el análisis de datos, la visualización y entender el porqué detrás de los números — cada proyecto parte de una pregunta concreta y termina con un insight accionable, no solo un gráfico.
+        Soy Walter Emanuel Chavez, supervisor de operaciones en la industria molinera. Durante más de una década trabajé coordinando equipos, siguiendo indicadores productivos, elaborando reportes y resolviendo problemas reales de planta.
+      </p>
+      <p class="about-desc">
+        Actualmente curso la Tecnicatura en Ciencias de Datos e Inteligencia Artificial. Mi objetivo es combinar conocimiento operativo, análisis de negocio y tecnología para construir soluciones útiles, medibles y aplicables.
       </p>
 
-      <!-- EDUCATION BLOCK — destacado -->
       <div class="edu-block">
         <div class="edu-block-accent"></div>
         <div class="edu-block-inner">
@@ -296,7 +359,7 @@
           <div class="edu-title">Tecnicatura en Ciencias de Datos e IA</div>
           <div class="edu-inst">Instituto Superior Santo Domingo · Tucumán, Argentina</div>
           <div class="edu-meta">
-            <span class="edu-badge">En curso · 2° año</span>
+            <span class="edu-badge">4.º semestre · En curso</span>
             <span class="edu-year">2025 – 2027</span>
           </div>
           <div class="edu-subjects">
@@ -309,29 +372,94 @@
           </div>
         </div>
       </div>
-
-      <div class="skills-grid">
-        <div class="skill-item"><div class="skill-dot"></div>Python & pandas</div>
-        <div class="skill-item"><div class="skill-dot"></div>SQL</div>
-        <div class="skill-item"><div class="skill-dot"></div>Power BI</div>
-        <div class="skill-item"><div class="skill-dot"></div>Excel</div>
-        <div class="skill-item"><div class="skill-dot"></div>Visualización de datos</div>
-        <div class="skill-item"><div class="skill-dot"></div>Análisis exploratorio (EDA)</div>
-      </div>
     </div>
+
     <div>
       <div class="stack-panel">
-        <div class="panel-label">// Stack técnico</div>
-        <div class="stack-row"><span class="stack-name">Python (pandas, matplotlib)</span><div class="stack-bar"><div class="stack-fill" style="width:75%"></div></div></div>
-        <div class="stack-row"><span class="stack-name">SQL</span><div class="stack-bar"><div class="stack-fill" style="width:70%"></div></div></div>
-        <div class="stack-row"><span class="stack-name">Power BI</span><div class="stack-bar"><div class="stack-fill" style="width:65%"></div></div></div>
-        <div class="stack-row"><span class="stack-name">Excel</span><div class="stack-bar"><div class="stack-fill" style="width:80%"></div></div></div>
-        <div class="stack-row"><span class="stack-name">Análisis de negocio</span><div class="stack-bar"><div class="stack-fill" style="width:70%"></div></div></div>
+        <div class="panel-label">// Herramientas aplicadas</div>
+        <div class="stack-group">
+          <span class="stack-group-title">Análisis y automatización</span>
+          <div class="stack-tags">
+            <span>Python</span><span>pandas</span><span>Excel</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <span class="stack-group-title">Datos</span>
+          <div class="stack-tags">
+            <span>SQL</span><span>SQLite</span><span>DBeaver</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <span class="stack-group-title">Visualización</span>
+          <div class="stack-tags">
+            <span>Streamlit</span><span>Power BI</span><span>Tableau</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <span class="stack-group-title">Desarrollo</span>
+          <div class="stack-tags">
+            <span>Git</span><span>GitHub</span><span>Linux</span>
+          </div>
+        </div>
       </div>
+
       <div class="quote-block">
-        <div class="quote-mark">"</div>
-        <div class="quote-text">Sin datos, eres otra persona con una opinión más.</div>
-        <div class="quote-mark">"</div>
+        <div class="quote-mark">“</div>
+        <div class="quote-text">Entender la operación primero permite analizar los datos con mejores preguntas.</div>
+        <div class="quote-mark">”</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- EXPERIENCE -->
+<section id="experiencia">
+  <div class="section-tag">// Experiencia profesional</div>
+  <h2 class="section-title">Más de una década en <em>operaciones industriales</em></h2>
+  <div class="divider"></div>
+
+  <div class="experience-card">
+    <div class="experience-head">
+      <div>
+        <div class="experience-role">Supervisor de Operaciones</div>
+        <div class="experience-company">Industria molinera · Tucumán, Argentina</div>
+      </div>
+      <div class="experience-period">10+ años</div>
+    </div>
+
+    <p class="experience-summary">
+      Experiencia en coordinación de equipos, seguimiento de producción, análisis de indicadores y mejora continua. Esta base operativa me permite desarrollar soluciones de datos conectadas con necesidades concretas del negocio.
+    </p>
+
+    <div class="experience-grid">
+      <div class="experience-item">
+        <span class="experience-index">01</span>
+        <div>
+          <h3>Liderazgo operativo</h3>
+          <p>Coordinación de personas, prioridades, turnos y continuidad de los procesos productivos.</p>
+        </div>
+      </div>
+      <div class="experience-item">
+        <span class="experience-index">02</span>
+        <div>
+          <h3>Indicadores y reportes</h3>
+          <p>Seguimiento de producción, desvíos y resultados mediante Excel y reportes para la toma de decisiones.</p>
+        </div>
+      </div>
+      <div class="experience-item">
+        <span class="experience-index">03</span>
+        <div>
+          <h3>Mejora de procesos</h3>
+          <p>Identificación de problemas operativos y búsqueda de soluciones simples, medibles y sostenibles.</p>
+        </div>
+      </div>
+      <div class="experience-item">
+        <span class="experience-index">04</span>
+        <div>
+          <h3>Automatización con datos</h3>
+          <p>Desarrollo de soluciones para extracción, conciliación, auditoría y visualización de información productiva.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -361,7 +489,7 @@
         </div>
         <h3 class="proj-title">Auditoría y Conciliación de Datos CEMT</h3>
         <p class="proj-desc">
-          Pipeline de datos end-to-end para detectar discrepancias entre los registros informados al Ministerio y los datos reales de producción de molienda. Extracción paginada, almacenamiento incremental en SQLite, validación con SQL y dashboard en Streamlit para gerencia.
+          Pipeline de datos end-to-end para auditar y conciliar los registros informados al Ministerio con los datos reales de producción. Extracción segmentada por intervalos, almacenamiento incremental en SQLite, validación con SQL y dashboard en Streamlit.
         </p>
         <div class="proj-metrics">
           <div>
@@ -373,14 +501,14 @@
             <div class="metric-label">Pipeline completo</div>
           </div>
           <div>
-            <div class="metric-val">min</div>
-            <div class="metric-label">Conciliación diaria</div>
+            <div class="metric-val">Min</div>
+            <div class="metric-label">Conciliación automatizada</div>
           </div>
         </div>
-        <a href="https://github.com/walevez/control_cemt" target="_blank" class="proj-link">Ver en GitHub →</a>
+        <a href="https://github.com/walevez/cemt-data-audit" target="_blank" rel="noopener noreferrer" class="proj-link">Ver en GitHub →</a>
       </div>
       <div class="proj-visual screenshot">
-        <img src="https://raw.githubusercontent.com/walevez/control_cemt/main/capturas/screenshot02.jpeg" alt="Dashboard Streamlit — Control CEMT" loading="lazy">
+        <img src="https://raw.githubusercontent.com/walevez/cemt-data-audit/main/capturas/screenshot02.jpeg" alt="Dashboard Streamlit — Control CEMT" loading="lazy">
       </div>
     </div>
 
@@ -411,7 +539,7 @@
             <div class="metric-label">Python + pandas</div>
           </div>
         </div>
-        <a href="https://github.com/walevez/Superstore-Sales-Analysis" target="_blank" class="proj-link">Ver en GitHub →</a>
+        <a href="https://github.com/walevez/Superstore-Sales-Analysis" target="_blank" rel="noopener noreferrer" class="proj-link">Ver en GitHub →</a>
       </div>
       <div class="proj-visual">
         <div class="bar-chart-bar" style="height:38%"></div>
@@ -429,42 +557,6 @@
       </div>
     </div>
 
-    <!-- COMING SOON 1 -->
-    <div class="project-card">
-      <div class="project-bar"></div>
-      <div class="proj-tags">
-        <span class="proj-tag">SQL</span>
-        <span class="proj-tag">Power BI</span>
-        <span class="proj-tag">En desarrollo</span>
-      </div>
-      <h3 class="proj-title">Dashboard de Ventas en Power BI</h3>
-      <p class="proj-desc">Dashboard con KPIs de ventas conectado a una base de datos SQL. Seguimiento de métricas clave por período y categoría.</p>
-      <div style="margin-top:auto; padding-top:1.25rem;">
-        <div class="coming-soon">
-          <div class="coming-dot"></div>
-          Próximamente
-        </div>
-      </div>
-    </div>
-
-    <!-- COMING SOON 2 -->
-    <div class="project-card">
-      <div class="project-bar"></div>
-      <div class="proj-tags">
-        <span class="proj-tag">Python</span>
-        <span class="proj-tag">EDA</span>
-        <span class="proj-tag">En desarrollo</span>
-      </div>
-      <h3 class="proj-title">Análisis exploratorio — Próximo proyecto</h3>
-      <p class="proj-desc">Análisis exploratorio de un dataset con contexto de negocio real. Limpieza de datos, visualizaciones e insights accionables.</p>
-      <div style="margin-top:auto; padding-top:1.25rem;">
-        <div class="coming-soon">
-          <div class="coming-dot"></div>
-          En construcción
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -474,10 +566,12 @@
   <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; margin-bottom:2.5rem;">
     <div>
       <div class="section-tag">// Formación complementaria</div>
-      <h2 class="section-title">Certificaciones & <em>cursos</em></h2>
+      <h2 class="section-title">Formación <em>complementaria</em></h2>
+      <p class="cert-intro">Cursos seleccionados que acompañan mi formación técnica. Los proyectos y la experiencia aplicada son el eje principal de este portfolio.</p>
     </div>
     <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
-      <button class="cert-filter active" onclick="filterCerts('all',this)">Todos · 19</button>
+      <button class="cert-filter active" onclick="filterCerts('featured',this)">Destacados</button>
+      <button class="cert-filter" onclick="filterCerts('all',this)">Ver todos · 19</button>
       <button class="cert-filter" onclick="filterCerts('coderhouse',this)">Coderhouse · 3</button>
       <button class="cert-filter" onclick="filterCerts('google',this)">Google · 3</button>
       <button class="cert-filter" onclick="filterCerts('platzi',this)">Platzi · 12</button>
@@ -488,7 +582,7 @@
   <div class="badge-wall" id="badge-wall">
 
     <!-- RECIENTES PRIMERO — 2026 -->
-    <a href="https://pub.coderhouse.com/certificates/e116e5ae-d9e2-430b-94e2-eb99f40fb958?v=1" target="_blank" class="badge-card featured-cert" data-platform="coderhouse">
+    <a href="https://pub.coderhouse.com/certificates/e116e5ae-d9e2-430b-94e2-eb99f40fb958?v=1" target="_blank" rel="noopener noreferrer" class="badge-card featured-cert" data-platform="coderhouse" data-featured="true">
       <div class="badge-top"><span class="badge-pill coderhouse-badge">Coderhouse</span><span class="badge-date">Abr. 2026</span></div>
       <div class="badge-name">Data Analytics</div>
       <div class="badge-skills"><span>Analytics</span><span>SQL</span><span>BI</span></div>
@@ -496,7 +590,7 @@
       <div class="badge-glow coderhouse-glow"></div>
     </a>
 
-    <a href="https://pub.coderhouse.com/certificates/7d500e84-f525-4c29-bb74-55b7e10fd1d9?v=1" target="_blank" class="badge-card featured-cert" data-platform="coderhouse">
+    <a href="https://pub.coderhouse.com/certificates/7d500e84-f525-4c29-bb74-55b7e10fd1d9?v=1" target="_blank" rel="noopener noreferrer" class="badge-card featured-cert" data-platform="coderhouse" data-featured="true">
       <div class="badge-top"><span class="badge-pill coderhouse-badge">Coderhouse</span><span class="badge-date">Mar. 2026</span></div>
       <div class="badge-name">Tableau</div>
       <div class="badge-skills"><span>Tableau</span><span>Viz</span><span>Datos</span></div>
@@ -504,7 +598,7 @@
       <div class="badge-glow coderhouse-glow"></div>
     </a>
 
-    <a href="https://www.coursera.org/account/accomplishments/verify/F0PNXMBFT69G" target="_blank" class="badge-card" data-platform="google">
+    <a href="https://www.coursera.org/account/accomplishments/verify/F0PNXMBFT69G" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="google" data-featured="true">
       <div class="badge-top"><span class="badge-pill google-badge">Google</span><span class="badge-date">Mar. 2026</span></div>
       <div class="badge-name">Prepare Data for Exploration</div>
       <div class="badge-skills"><span>SQL</span><span>Datos</span></div>
@@ -512,7 +606,7 @@
       <div class="badge-glow google-glow"></div>
     </a>
 
-    <a href="https://www.coursera.org/account/accomplishments/verify/J6QL4AWAWB09" target="_blank" class="badge-card" data-platform="google">
+    <a href="https://www.coursera.org/account/accomplishments/verify/J6QL4AWAWB09" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="google">
       <div class="badge-top"><span class="badge-pill google-badge">Google</span><span class="badge-date">Ene. 2026</span></div>
       <div class="badge-name">Ask Questions to Make Data-Driven Decisions</div>
       <div class="badge-skills"><span>Análisis</span><span>SQL</span></div>
@@ -520,7 +614,7 @@
       <div class="badge-glow google-glow"></div>
     </a>
 
-    <a href="https://pub.coderhouse.com/certificates/13e268f6-19f1-41c0-903d-57e91d1cf30f?v=1" target="_blank" class="badge-card" data-platform="coderhouse">
+    <a href="https://pub.coderhouse.com/certificates/13e268f6-19f1-41c0-903d-57e91d1cf30f?v=1" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="coderhouse">
       <div class="badge-top"><span class="badge-pill coderhouse-badge">Coderhouse</span><span class="badge-date">Ene. 2026</span></div>
       <div class="badge-name">Excel</div>
       <div class="badge-skills"><span>Microsoft Excel</span></div>
@@ -529,7 +623,7 @@
     </a>
 
     <!-- 2025 -->
-    <a href="https://www.coursera.org/account/accomplishments/verify/GMY4PHEMPE9X" target="_blank" class="badge-card" data-platform="google">
+    <a href="https://www.coursera.org/account/accomplishments/verify/GMY4PHEMPE9X" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="google" data-featured="true">
       <div class="badge-top"><span class="badge-pill google-badge">Google</span><span class="badge-date">Dic. 2025</span></div>
       <div class="badge-name">Foundations: Data, Data, Everywhere</div>
       <div class="badge-skills"><span>Data Analytics</span><span>SQL</span></div>
@@ -537,7 +631,7 @@
       <div class="badge-glow google-glow"></div>
     </a>
 
-    <a href="https://www.credly.com/badges/1240f0e1-48d7-43ac-b7f5-a4a9701e87d2/linked_in_profile" target="_blank" class="badge-card" data-platform="cisco">
+    <a href="https://www.credly.com/badges/1240f0e1-48d7-43ac-b7f5-a4a9701e87d2/linked_in_profile" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="cisco">
       <div class="badge-top"><span class="badge-pill cisco-badge">Cisco</span><span class="badge-date">Nov. 2025</span></div>
       <div class="badge-name">Introduction to Cybersecurity</div>
       <div class="badge-skills"><span>Seguridad</span><span>Redes</span></div>
@@ -546,7 +640,7 @@
     </a>
 
     <!-- 2023 -->
-    <a href="https://platzi.com/p/walevez/curso/2793-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+    <a href="https://platzi.com/p/walevez/curso/2793-course/diploma/detalle/" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="platzi" data-featured="true">
       <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">2023</span></div>
       <div class="badge-name">Negocios y Data Science</div>
       <div class="badge-skills"><span>Data Science</span><span>Negocios</span></div>
@@ -554,7 +648,7 @@
       <div class="badge-glow platzi-glow"></div>
     </a>
 
-    <a href="https://platzi.com/p/walevez/curso/4036-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+    <a href="https://platzi.com/p/walevez/curso/4036-course/diploma/detalle/" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="platzi">
       <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Feb. 2023</span></div>
       <div class="badge-name">Curso Básico de Computadores e Informática</div>
       <div class="badge-skills"><span>Fundamentos</span></div>
@@ -562,7 +656,7 @@
       <div class="badge-glow platzi-glow"></div>
     </a>
 
-    <a href="https://platzi.com/p/walevez/curso/3639-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+    <a href="https://platzi.com/p/walevez/curso/3639-course/diploma/detalle/" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="platzi">
       <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Feb. 2023</span></div>
       <div class="badge-name">Pensamiento Lógico: Manejo de Datos, Estructuras y Funciones</div>
       <div class="badge-skills"><span>Lógica</span><span>Estructuras</span></div>
@@ -570,7 +664,7 @@
       <div class="badge-glow platzi-glow"></div>
     </a>
 
-    <a href="https://platzi.com/p/walevez/curso/2383-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+    <a href="https://platzi.com/p/walevez/curso/2383-course/diploma/detalle/" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="platzi">
       <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Feb. 2023</span></div>
       <div class="badge-name">Pensamiento Lógico: Lenguajes de Programación</div>
       <div class="badge-skills"><span>Lógica</span><span>Programación</span></div>
@@ -578,7 +672,7 @@
       <div class="badge-glow platzi-glow"></div>
     </a>
 
-    <a href="https://platzi.com/p/walevez/curso/4227-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+    <a href="https://platzi.com/p/walevez/curso/4227-course/diploma/detalle/" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="platzi">
       <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Ene. 2023</span></div>
       <div class="badge-name">Fundamentos de Python</div>
       <div class="badge-skills"><span>Python</span></div>
@@ -586,7 +680,7 @@
       <div class="badge-glow platzi-glow"></div>
     </a>
 
-    <a href="https://platzi.com/p/walevez/curso/3223-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+    <a href="https://platzi.com/p/walevez/curso/3223-course/diploma/detalle/" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="platzi">
       <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Ene. 2023</span></div>
       <div class="badge-name">Excel: Fundamentos y Formato de Hojas de Cálculo</div>
       <div class="badge-skills"><span>Excel</span></div>
@@ -594,7 +688,7 @@
       <div class="badge-glow platzi-glow"></div>
     </a>
 
-    <a href="https://platzi.com/p/walevez/curso/3222-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+    <a href="https://platzi.com/p/walevez/curso/3222-course/diploma/detalle/" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="platzi">
       <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Ene. 2023</span></div>
       <div class="badge-name">Excel Básico: Tablas y Fórmulas para la Gestión de Datos</div>
       <div class="badge-skills"><span>Excel</span><span>Datos</span></div>
@@ -603,7 +697,7 @@
     </a>
 
     <!-- 2022 -->
-    <a href="https://platzi.com/p/walevez/curso/3221-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+    <a href="https://platzi.com/p/walevez/curso/3221-course/diploma/detalle/" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="platzi">
       <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Nov. 2022</span></div>
       <div class="badge-name">Pensamiento Lógico: Algoritmos y Diagramas de Flujo</div>
       <div class="badge-skills"><span>Lógica</span><span>Algoritmos</span></div>
@@ -612,7 +706,7 @@
     </a>
 
     <!-- 2021 -->
-    <a href="https://platzi.com/p/walevez/curso/1764-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+    <a href="https://platzi.com/p/walevez/curso/1764-course/diploma/detalle/" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="platzi">
       <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Ene. 2022</span></div>
       <div class="badge-name">Introducción al Pensamiento Computacional con Python</div>
       <div class="badge-skills"><span>Python</span><span>Algoritmos</span></div>
@@ -620,7 +714,7 @@
       <div class="badge-glow platzi-glow"></div>
     </a>
 
-    <a href="https://platzi.com/p/walevez/curso/2292-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+    <a href="https://platzi.com/p/walevez/curso/2292-course/diploma/detalle/" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="platzi">
       <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Dic. 2021</span></div>
       <div class="badge-name">Introducción a la Terminal y Línea de Comandos</div>
       <div class="badge-skills"><span>Linux</span><span>Terminal</span></div>
@@ -628,7 +722,7 @@
       <div class="badge-glow platzi-glow"></div>
     </a>
 
-    <a href="https://platzi.com/p/walevez/curso/2069-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+    <a href="https://platzi.com/p/walevez/curso/2069-course/diploma/detalle/" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="platzi">
       <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Nov. 2021</span></div>
       <div class="badge-name">Entorno de Trabajo para Ciencia de Datos con Jupyter y Anaconda</div>
       <div class="badge-skills"><span>Python</span><span>Jupyter</span></div>
@@ -636,7 +730,7 @@
       <div class="badge-glow platzi-glow"></div>
     </a>
 
-    <a href="https://platzi.com/p/walevez/curso/2255-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+    <a href="https://platzi.com/p/walevez/curso/2255-course/diploma/detalle/" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="platzi">
       <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Nov. 2021</span></div>
       <div class="badge-name">Python Intermedio: Comprehensions, Lambdas y Manejo de Errores</div>
       <div class="badge-skills"><span>Python</span></div>
@@ -644,7 +738,7 @@
       <div class="badge-glow platzi-glow"></div>
     </a>
 
-    <a href="https://platzi.com/p/walevez/curso/2434-course/diploma/detalle/" target="_blank" class="badge-card" data-platform="platzi">
+    <a href="https://platzi.com/p/walevez/curso/2434-course/diploma/detalle/" target="_blank" rel="noopener noreferrer" class="badge-card" data-platform="platzi">
       <div class="badge-top"><span class="badge-pill platzi-badge">Platzi</span><span class="badge-date">Ago. 2021</span></div>
       <div class="badge-name">Configuración de Entorno de Desarrollo en Linux</div>
       <div class="badge-skills"><span>Linux</span><span>DevEnv</span></div>
@@ -652,14 +746,6 @@
       <div class="badge-glow platzi-glow"></div>
     </a>
 
-  </div>
-
-  <!-- Stats -->
-  <div class="cert-stats">
-    <div class="cert-stat"><div class="cert-stat-num">19</div><div class="cert-stat-label">Certificados</div></div>
-    <div class="cert-stat"><div class="cert-stat-num">4</div><div class="cert-stat-label">Plataformas</div></div>
-    <div class="cert-stat"><div class="cert-stat-num">2021–2026</div><div class="cert-stat-label">En formación</div></div>
-    <div class="cert-stat"><div class="cert-stat-num">3</div><div class="cert-stat-label">Google Data Analytics</div></div>
   </div>
 
 </section>
@@ -671,16 +757,16 @@
     <h2 class="section-title">¿Hablamos de <em>datos</em>?</h2>
     <div class="divider"></div>
     <p style="color:var(--text-secondary);font-weight:300;line-height:1.75;margin-bottom:0.5rem;">
-      Estoy abierto a colaboraciones, proyectos freelance o simplemente charlar sobre analítica. Escribime por LinkedIn o GitHub.
+      Estoy abierto a oportunidades junior en Data Analytics, BI y análisis de procesos, especialmente en equipos donde mi experiencia operativa pueda aportar contexto de negocio.
     </p>
     <div class="contact-info">
       <div class="contact-item">
         <div class="contact-icon">gh</div>
-        <a href="https://github.com/walevez" target="_blank" style="color:var(--text-secondary);text-decoration:none;">github.com/walevez</a>
+        <a href="https://github.com/walevez" target="_blank" rel="noopener noreferrer" style="color:var(--text-secondary);text-decoration:none;">github.com/walevez</a>
       </div>
       <div class="contact-item">
         <div class="contact-icon">in</div>
-        <a href="https://www.linkedin.com/in/walevez/" target="_blank" style="color:var(--text-secondary);text-decoration:none;">linkedin.com/in/walevez</a>
+        <a href="https://www.linkedin.com/in/walevez/" target="_blank" rel="noopener noreferrer" style="color:var(--text-secondary);text-decoration:none;">linkedin.com/in/walevez</a>
       </div>
       <div class="contact-item">
         <div class="contact-icon">📍</div>
@@ -694,8 +780,8 @@
   <div class="footer-logo">WALTER<span>CHAVEZ</span></div>
   <span class="footer-copy">© 2026 Walter Emanuel Chavez · Tucumán, Argentina</span>
   <div class="footer-links">
-    <a href="https://github.com/walevez" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/walevez/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/walevez" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://www.linkedin.com/in/walevez/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     <a href="#proyectos">Proyectos</a>
   </div>
 </footer>
@@ -705,7 +791,10 @@
     document.querySelectorAll('.cert-filter').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('.badge-card').forEach((card, i) => {
-      const match = platform === 'all' || card.dataset.platform === platform;
+      const match =
+        platform === 'all' ||
+        (platform === 'featured' && card.dataset.featured === 'true') ||
+        card.dataset.platform === platform;
       card.classList.toggle('hidden', !match);
       if (match) {
         card.style.animationDelay = (i * 30) + 'ms';
@@ -715,6 +804,11 @@
       }
     });
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const featuredButton = document.querySelector('.cert-filter.active');
+    if (featuredButton) filterCerts('featured', featuredButton);
+  });
 </script>
 </body>
 </html>
